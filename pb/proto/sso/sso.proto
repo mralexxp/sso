@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+// # Пакет для пространства имен
+package auth;
+
+option go_package = "tuzov.sso.v1;ssov1";
+
+// # Деление сервиса SSO на более мелкие модули дял удобства
+service Auth {
+    // # RegisterRequest - message, который является структурой данных proto для запроса
+    // # RegisterResponse - message, который является структурой ответа на запрос
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc isAdmin (isAdminRequest) returns (isAdminResponse);
+}
+
+// # Структура для запроса регистрации пользователя
+message RegisterRequest {
+    string email = 1; // email пользователя
+    string password = 2; // пароль пользователя
+}
+
+// # Структура для ответа на запрос регистрации пользователя
+message RegisterResponse {
+    int64 user_id = 1; // токен авторизации
+}
+
+message LoginRequest {
+    string email = 1; // email пользователя
+    string password = 2; // пароль пользователя
+    int32 app_id = 3; // Выбираем id сервиса, в который логинимся?
+}
+
+message LoginResponse {
+    string token = 1; // JWT-токен
+}
+
+message isAdminRequest {
+    int64 user_id = 1; // id пользователя
+}
+
+message isAdminResponse {
+    bool is_admin = 1; // является ли пользователь администратором
+}
+
+
