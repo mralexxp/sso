@@ -1,7 +1,7 @@
 SSO:
     - AUTH (аутентификация)
-    - PERMISSIONS (авторизация)
-    - USER INFO (UserInfo)
+    - TODO: PERMISSIONS (авторизация)
+    - TODO: USER INFO (UserInfo)
 
 
 Layers:
